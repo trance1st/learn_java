@@ -1,0 +1,651 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Java Core - Operatori si controlul executiei</title>
+  <script src="https://cdn.rawgit.com/trance1st/codelab-webcomponents/master/bower_components/google-prettify/src/prettify.js"></script>
+  <script src="https://cdn.rawgit.com/trance1st/codelab-webcomponents/master/bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
+  <script src="https://cdn.rawgit.com/trance1st/codelab-webcomponents/master/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="https://raw.githubusercontent.com/trance1st/codelab-webcomponents/master/elements/codelab.html">
+ <style is="custom-style">
+    body {
+      font-family: 'monospace';
+      background: var(--google-codelab-background, --paper-grey-300);
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title="Modul1 -> Operatori si controlul executiei"
+                  feedback-link="https://github.com/googlecodelabs"
+                  environment="web"
+                  last-updated="2016-07-18">
+
+      <google-codelab-step label="Operatori - continuare" duration="10">
+	<h2>Citirea inputului de la utilizator</h2>
+	<p>Pentru a citi date de la utilizatorul programului nostru ne vom folosi de urmatoarea secventa de instructiuni</p>
+	<pre>
+Scanner in = new Scanner(System.in);
+int a = in.nextInt();
+	</pre>
+	<aside class="warning">
+	Scanner reprezinta o clasa interna a limbajului Java ce ne ofera metode/instructiuni pentru a 'scana' si a putea citi inputul de la utilizator. Deoarece conceptul de OOP il vom invata cursul viitorul, pentru moment este suficient sa intelegem secventa de mai sus ca o modalitate de a citi un numar intreg tastat de catre utilizator in terminalul de executie al programului. Ne vom folosi de aceasta noua instructiune invatata pentru a realiza programe mai dinamice.
+	</aside>
+	<aside class="special">
+	<p>Instructiunea <b>int a = in.nextInt();</b> va bloca executia programului si va astepta tastarea unui numar in terminalul de executie al programului urmata de apasarea tastei ENTER.
+	Daca utilizatorul a introduc un numar intreg atunci programul va trece la executarea urmatoarei secvente de cod, in caz contrar programul se va termina afisand o eroare in terminalul de executie.
+	</p>
+	</aside>	
+	<h2> Adunarea a 3 numere</h2>
+	<p>Sa se realizeze un program care asteapta utilizatorul sa tasteze 3 numere intregi iar in final va afisa suma lor.</p>
+<p> Pe baza celor invatate pana acum programul nostru se poate scrie:
+<pre>
+Scanner in = new Scanner(System.in);
+int a = in.nextInt();
+int b = in.nextInt();
+int c = in.nextInt();
+
+int sum = 0;
+sum = sum + a; 
+sum = sum + b;
+sum = sum + c;
+
+System.out.println(sum);
+</pre>
+	<h2>Operatori de asignare compusi</h2>
+<p>In exemplul de mai sus am folosit in mod repetat instructiuna <b>sum = sum + var; </b>. In Java, exista o modalitate mai scurta de a realiza aceasta operatiune folosind operatori de asignare compusi.
+Spre exemplu, programul nostru se poate scrie:
+</p>
+<pre>
+Scanner in = new Scanner(System.in);
+int a = in.nextInt();
+int b = in.nextInt();
+int c = in.nextInt();
+
+int sum = 0;
+sum += a;
+sum += b;
+sum += c;
+
+System.out.println(sum);
+</pre>
+In tabelul de mai jos sunt exemplificati toti operatorii compusi de asignare
+<table class="table-zebra" style="width:80%">
+<tbody><tr>
+  <th>Operator</th>
+  <th>Descriere</th>
+  <th>Sintaxa</th>
+  <th>Exemplu</th>
+  </tr>
+<tr>
+  <td class="text-center"><span class="font-code">=</span></td>
+  <td>Asignarea<br>Asigneaza valoarea expresiei din partea dreapta la variabila din partea stanga</td>
+  <td><span class="font-code"><em>var</em> = <em>expr</em></span></td>
+  <td><span class="font-code">x = 5;</span></td>
+  </tr>
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code">+=</span></td>
+  <td>Adunare si asignare compusa</td>
+  <td><span class="font-code"><em>var</em> += <em>expr</em></span><br>similar cu <span class="font-code"> <em>var</em> = <em>var</em> + <em>expr</em></span></td>
+  <td><span class="font-code">x += 5;<br></span> similar cu <span class="font-code">x = x + 5</span></td>
+  </tr>
+<tr>
+  <td class="text-center"><span class="font-code">-=</span></td>
+  <td>Scadere si asignare compusa</td>
+  <td><span class="font-code"><em>var</em> -= <em>expr</em></span><br>
+    similar cu <span class="font-code"> <em>var</em> = <em>var</em> - <em>expr</em></span></td>
+  <td><span class="font-code">x -= 5;<br></span> similar cu <span class="font-code">x = x - 5</span></td>
+  </tr>
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code">*=</span></td>
+  <td>Inmultire compusa si asignare</td>
+  <td><span class="font-code"><em>var</em> *= <em>expr</em></span><br>
+   similar cu <span class="font-code"> <em>var</em> = <em>var</em> * <em>expr</em></span></td>
+  <td><span class="font-code">x *= 5;<br></span> similar cu <span class="font-code">x = x * 5</span></td>
+  </tr>
+<tr>
+  <td class="text-center"><span class="font-code">/=</span></td>
+  <td>Impartire si asignare compusa</td>
+  <td><span class="font-code"><em>var</em> /= <em>expr</em></span><br>
+    similar cu <span class="font-code"> <em>var</em> = <em>var</em> / <em>expr</em></span></td>
+  <td><span class="font-code">x /= 5;<br></span> similar cu <span class="font-code">x = x / 5</span></td>
+  </tr>
+
+</tbody></table>
+	<h2>Operatori unari</h2>
+	<p>Asa cum am invatat in cursul anterior, asupra variabilelor numerice se pot aplica operatorii matematici +, -, /, * etc. Acesti operatori se mai numesc operatori binari, deoarece ei opereaza asupra a 2 variabile. In Java exista operatori matematici unari ce se pot aplica unei singure variabile pentru a-i modifica valoarea.
+</p>
+	<p>Spre exemplu operatorul ++ reprezinta incrementarea unei valori.</p>
+<pre>
+        int a = 10;
+        a++;
+        System.out.println(a);
+</pre>
+<p>Programul de mai jos va afisa valoarea 11</p>
+
+<p>Similar exista si operatorul -- ce reprezinta decrementarea unei valori.</p>
+
+	<aside class="special">
+	<p>
+	Deci, in Java, exista o forma mai scurta a expresiei <b> a = a + 1;</b> si anumte <b>a++;</b>
+	</p>
+</aside>
+	<h2>Operatori unari Prefix/Postfix</h2>
+	<p>Operatorii unari se pot folosi atat in fata unei variabile cat si la final unei variabile. <b> Diferenta intre cele 2 moduri o reprezinta valoarea pe care expresia respectiva o intoarce</b>
+<pre>
+int a = 10;
+int b = a++;
+System.out.println("a=" + a);
+System.out.println("b=" + b);
+
+
+int c = ++a;
+System.out.println("a=" + a);
+System.out.println("c=" + c);
+</pre>
+Programul de mai sus va afisa
+<pre>
+a=11
+b=10
+a=12
+c=12
+
+Process finished with exit code 0
+</pre>
+
+<aside class="special">
+	<p>
+	A se observa ca dupa oricare dintre instructiunile a++ si ++a, valoarea variabilei a este incrementata. Diferenta o reprezinta valoarea ce va fi returnata: in cazul a++ se va returna valoarea variabilei a inainte de incrementare, in cazul ++a se va returna valoarea variabilei a dupa incrementare. De aici si numele de "post/pre incrementare".
+	</p>
+</aside>
+<table class="table-zebra" style="width:80%">
+<tbody><tr>
+  <th>Operator</th>
+  <th>Descriere</th>
+  <th>Exemplu</th>
+  </tr>
+<tr>
+  <td class="text-center"><span class="font-code">++var</span></td>
+  <td>Pre-Increment<br>Incrementeaza <em>var</em>, apoi foloseste noua valoare a variabilei <em>var</em></td>
+  <td><span class="font-code">y = ++x;</span><br>similar cu<span class="font-code"> x=x+1; y=x;</span></td>
+  </tr>
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code">var++</span></td>
+  <td>Post-Increment<br>
+  Foloseste vechea valoare a variabile <em>var</em>, apoi incrementeaza variabila <em>var</em></td>
+  <td><span class="font-code">y = x++;<br>similar cu<span class="font-code"> oldX=x; x=x+1; y=oldX;</span></span></td>
+  </tr>
+<tr>
+  <td class="text-center"><span class="font-code">--var</span></td>
+  <td>Pre-Decrement</td>
+  <td><span class="font-code">y = --x;<br>similar cu x=x-1; y=x;</span></td>
+  </tr>
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code">var--</span></td>
+  <td>Post-Decrement</td>
+  <td><span class="font-code">y = x--;<br>similar cu oldX=x; x=x-1; y=oldX;</span></td>
+  </tr>
+</tbody></table>
+ </p>
+    </google-codelab-step>
+<google-codelab-step label="Operatori relationali si logici" duration="10">
+  <h2>Variabile boolene</h2>
+  <p> O variabila booleana reprezinta o variabila ce poate avea 2 valori contrare. Spre exemplu true si false.</p>
+  <p> In programare ele sunt folosite pentru a controla executia anumitor instructiuni, asa cum vom vedea in capitolul urmator.</p>
+ <p> O variabila de tip boolean se declara astfel:</p>
+<pre>
+boolean a = true;
+System.out.println(a);
+boolean b = false;
+System.out.println(b);
+</pre>
+ <h2>Operatori relationali</h2>
+ <p>La fel ca si in matematica, in Java exista operatori relationali ce se pot aplica asupra variabilelor numerice invatate pana acum. Rezultatul oricarui operator relational reprezinta o valoare de tip boolean</p>
+<pre>
+int a = 10;
+int b = 5;
+
+boolean c = a > b;
+System.out.println(c);
+</pre>
+<p>In urma rularii, programul de mai sus va afisa valoarea true</p>
+<p>In Java exista 6 operatori de comparare/relationali</p>
+<table class="table-zebra" style="width:80%">
+<tbody><tr>
+  <th>Operator</th>
+  <th>Descriere</th>
+  <th>Sintaxa</th>
+  <th>Exemplu (x=5, y=8)</th>
+</tr>
+<tr>
+  <td class="text-center"><span class="font-code"><strong>==</strong></span></td>
+  <td>Egal cu</td>
+  <td><span class="font-code"><em>expr1</em> == <em>expr2</em></span></td>
+  <td><span class="font-code">(x == y) → false</span></td>  
+</tr>
+
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code"><strong>!=</strong></span></td>
+  <td>Diferit de</td>
+  <td><span class="font-code"><em>expr1</em> != <em>expr2</em></span></td>
+  <td><span class="font-code">(x != y) → true</span></td>  
+</tr>
+
+<tr>
+  <td class="text-center"><span class="font-code"><strong>&gt;</strong></span></td>
+  <td>Mai mare ca</td>
+  <td><span class="font-code"><em>expr1</em> &gt; <em>expr2</em></span></td>
+  <td><span class="font-code">(x &gt; y) → false</span></td>  
+</tr>
+
+<tr class="tr-alt">
+  <td class="text-center"><span class="font-code"><strong>&gt;=</strong></span></td>
+  <td>Mai mare sau egal ca</td>
+  <td><span class="font-code"><em>expr1</em> &gt;= <em>expr2</em></span></td>
+  <td><span class="font-code">(x &gt;= 5) → true</span></td>  
+</tr>
+
+<tr>
+  <td class="text-center"><span class="font-code"><strong>&lt;</strong></span></td>
+  <td>Mai mic ca</td>
+  <td><span class="font-code"><em>expr1</em> &lt; <em>expr2</em></span></td>
+  <td><span class="font-code">(y &lt; 8) → false</span></td>  
+</tr>
+
+<tr>
+  <td class="text-center"><span class="font-code"><strong>&lt;=</strong></span></td>
+  <td>Mai mic sau egal ca</td>
+  <td><span class="font-code"><em>expr1</em> &lt;= <em>expr2</em></span></td>
+  <td><span class="font-code">(y &lt;= 8) → true</span></td>  
+</tr>
+</tbody></table>
+
+<aside class="special">
+	<p>
+	Orice operator de comparare se aplica doar asupra a 2 operanzi(variabile). Spre deosebire de matematica, in Java este ilegal a scrie <b>1 < a < 100</b>. Pentru a reusi sa implementan in Java compararea data, expresia trebuie despartita in 2 expresii de comparare ce pot fi implementate in Java: 1 < a si a < 100. Intre cele 2 expresii vom folosi operatorul and: (x > 1) && (x < 100);
+	</p>
+</aside>
+<h2>Operatori logici</h2>
+In Java exista 4 operatori logici. Un operator logic se aplica asupra 2 expresii de tip boolean rezultand o valoare in functie de operatorul folosit.
+<table class="table-zebra" style="width:60%">
+  <tbody><tr>
+    <th>Operator</th>
+    <th>Descriere</th>
+    <th>Exemplu</th>
+    </tr>
+  <tr>
+    <td class="text-center"><span class="font-code">!</span></td>
+    <td>Logical NOT</td>
+    <td><span class="font-code">!<em>booleanExpr</em></span></td>
+    </tr>
+  <tr class="tr-alt">
+    <td class="text-center"><span class="font-code">^</span></td>
+    <td>Logical XOR</td>
+    <td><span class="font-code"><em>booleanExpr1</em> ^ <em>booleanExpr2</em></span></td>
+    </tr>
+  <tr>
+    <td class="text-center"><span class="font-code">&amp;&amp;</span></td>
+    <td>Logical AND</td>
+    <td><span class="font-code"><em>booleanExpr1</em> &amp;&amp; <em>booleanExpr2</em></span></td>
+  </tr>
+  <tr class="tr-alt">
+    <td class="text-center"><span class="font-code">||</span></td>
+    <td>Logical OR</td>
+    <td><span class="font-code"><em>booleanExpr1</em> || <em>booleanExpr2</em></span></td>
+    </tr>
+</tbody></table>
+
+Tabelul de adevar al operatorilor logici:
+<img src="images/logical_table.png" style="max-width: 680px"/>
+
+<aside class="special">
+	<p>
+	Operatorii logici se pot folosi spre exemplu pentru a stabili valoarea de adevar a unei fraze logice. Spre exemplu, codul de mai jos testeaza daca un numar este pozitiv, par dar mai mic decat 10
+</p>
+<pre>
+int a = 7;
+
+boolean isAMagicalNumber = (a > 0) && (a % 2  == 0) && (a < 10);
+
+System.out.println(isAMagicalNumber);
+</pre>
+	</p>
+</aside>
+</google-codelab-step>
+
+<google-codelab-step label="If-else" duration="10">
+ <p>In programare, exista 3 tipuri de control al executiei: secvential, conditonal si iterativ.</p>
+<img src="images/flow_control.png" style="max-width: 680px"/>
+<p>Pana acum toate exemple noastre de programe au reprezentat programe cu executie secventiala, in care fiecare linie de cod se executa pe rand.</p>
+<p>Pentru a controla executia unor instructiuni in Java exista instructiunea <b>if</b>, a carei sintaxa generala este</p>
+<pre>
+if ( booleanExpression ) {
+   instruction1;
+   instruction2;	
+}
+</pre>
+   <h2></h2>
+<p>Instructiunea if-then-else</p>
+<pre>
+if ( booleanExpression ) {
+   true-block ;
+} else {
+   false-block ;
+}
+</pre>
+
+<p>Spre exemplu, in cadrul programului de mai jos afisam textul "a este mai mare" daca a este mai mare decat b sau "a este mai mic" daca a este mai mic decat b<p>
+<pre>
+int a = 10;
+int b = 5;
+
+boolean c = a > b;
+if (c) {
+    System.out.println("a este mai mare");
+} else {
+    System.out.println("a este mai mic");
+}
+</pre>
+
+Programul de mai sus poate fi re-scris fara a folosi o variabila intermediara pentru a stoca rezultatul operatiei de comparare:
+<pre>
+int a = 10;
+int b = 5;
+
+if (a > b) {
+    System.out.println("a este mai mare");
+} else {
+    System.out.println("a este mai mic");
+}
+</pre>
+
+Alaturi de if-then si if-then-else-then mai exista instructiunea ce poarta numele de "nested-ifs" care foloseste sintaxa "else if" pentru a realiza succesiuni de instructiuni "else"
+<p>Exemplu:</p>
+
+<pre>
+if ( booleanExpr-1 ) {
+   block-1 ;
+} else if ( booleanExpr-2 ) {
+   block-2 ;
+} else if ( booleanExpr-3 ) {
+   block-3 ;
+} else if ( booleanExpr-4 ) {
+   ......
+} else {
+   elseBlock ;
+}
+</pre>
+</google-codelab-step>
+<google-codelab-step label="Switch" duration="10">
+<h2>Instructiunea switch</h2>
+ Switch este o instructiune de decizie multipla care ramifica executia programului catre o anumita secventa de instructiuni dupa cum o expresie este egala cu o anumita valoare constanta.
+<p>Instructiunea switch poate fi folosita pentru urmatorele tipuri de date: byte, short, char, int, String. </p>
+<pre>
+switch ( selector ) {
+   case value-1:
+      block-1; break;
+   case value-2:
+      block-2; break;
+   case value-3:
+      block-3; break;
+   ......
+   case value-n:
+      block-n; break;
+   default:
+      default-block;
+}
+</pre>
+Spre exemplu:
+<pre>
+int a = 49;
+
+switch (a % 5) {
+    case 0: System.out.println("restul 0 la impartirea cu 5"); break;
+    case 1: System.out.println("restul 1 la impartirea cu 5"); break;
+    case 2: System.out.println("restul 2 la impartirea cu 5"); break;
+    case 3: System.out.println("restul 3 la impartirea cu 5"); break;
+    case 4: System.out.println("restul 4 la impartirea cu 5"); break;
+}
+
+</pre> 
+<aside class="special">
+	<p>In cadrul fiecarei sectiuni "case" se observa keyword-ul break ce marcheaza terminarea instructiunii switch. Fara acest keyword, toate instructiunile case ce se afla dupa instructiunea case ce s-a evaluat cu succes se vor executa si ele indiferent daca clauza case este sau nu indeplinita.</p>
+	
+</aside>
+</google-codelab-step>
+<google-codelab-step label="For" duration="10">	
+Sintaxa generala:
+<pre>
+for (initialization; test; post-processing) {
+   body;
+}
+</pre>
+Exemplu pentru calculul sumei numerelor de la 1 la 11:
+<pre>
+int sum = 0;
+
+for(int i=0; i < 11; i++) {
+    sum +=i;
+}
+
+System.out.println(sum);
+</pre>
+</google-codelab-step>
+
+<google-codelab-step label="While-do" duration="10">	
+Sintaxa generala:
+<pre>
+for (initialization; test; post-processing) {
+   body;
+}
+</pre>
+Exemplu pentru calculul sumei numerelor de la 1 la 11:
+<pre>
+int sum = 0, i = 1;
+while (i < 11) {
+    sum += i;
+    ++i;
+}
+
+System.out.println(sum);
+</pre>
+</google-codelab-step>
+
+<google-codelab-step label="Do-while" duration="10">
+Sintaxa generala:	
+<pre>
+do {
+   body;
+}
+while ( test );
+</pre>
+Exemplu pentru calculul sumei numerelor de la 1 la 11:
+<pre>
+int sum = 0, i = 1;
+do  {
+    sum += i;
+    ++i;
+} while(i < 11);
+
+System.out.println(sum);
+</pre>
+</google-codelab-step>
+
+<google-codelab-step label="Instructiuni de intrerupere" duration="10">
+	<h2>continue;</h2>
+	Aceasta instructiune anuleaza iteratia curenta si trece la iteratia urmatoare.<br>
+Spre exemplu daca dorim sa calculam suma numerelor impare intre 0 si 10:
+<pre>
+for (int i = 0; i < 11; i++) {
+    if (i % 2 == 0) {
+        continue;
+    }
+    sum += i;
+}
+
+System.out.println(sum);
+</pre>
+	<h2>break;</h2>
+	Aceasta instructiune anuleaza intreaga iteratie.<br>
+Urmatorul program parcurge toate numerele de la 0 la 100 si afiseaza un mesaj pentru primul numar multiplu de 5 gasit, dupa care inceteaza cautarea.
+<pre>
+for (int i = 0; i < 100; i++) {
+    if (i % 5 == 0) {
+        System.out.println("Primul multiplu de 5");
+        break;
+    }
+}
+</pre>
+
+</google-codelab-step>
+
+<google-codelab-step label="Array" duration="10">
+<aside class="special">
+Un vector, tablou sau array reprezinta un container pentru un numar de valori de acelasi tip. 
+</aside>
+<p>Sa presupunem ca dorim sa calculam nota medie intr-o clasa de 30 de studenti. Pentru a realiza acest lucru avem nevoie sa declaram 30 de variabile in care sa stocam nota fiecarui student.
+In programare exista notiunea de array ce ne permite sa salvam mai multe valori in cadrul unei variabile.
+</p>
+<p>Un vector se declara folosind sintaxa</p>
+<pre>
+tip nume = new tip[dimensiune];
+</pre>
+Exemplu:
+<pre>
+int[] a = new int[10];
+</pre>
+
+Fiecare element al vectorului poate fi accesat folosindu-ne de indexul sau.
+<pre>
+int[] a = new int[10];
+
+a[0] = 1;
+System.out.println(a[0]);
+</pre>
+
+<img src="images/vector.jpg" style="max-width: 680px"/>
+
+</google-codelab-step>
+
+<google-codelab-step label="Extra" duration="10">
+<aside class="special">
+Fiecare bloc de instructiuni delimitat de acolade {} defineste un context separat al variabilelor. De aceea, orice variabila declarata in cadrul unui bloc delimitat de acolade va putea fi folosita doar in cadrul acelui bloc. O variabila declarata in acest fel se numeste <b>variabila locala</b>. Codul de mai jos va produce o eroare de compilare:
+<pre>
+int a = 10;
+
+if ( a> 50) {
+    boolean b = false;
+}
+
+System.out.println(b);
+</pre>
+</aside>
+
+Care este rezultatul rularii codului de mai jos?
+<aside class="special">
+<pre>
+boolean a;
+if (a = true) {
+    System.out.println("In interiorul if");
+}
+
+System.out.println("Valoarea lui a este:" + a);
+</pre>
+</aside>
+<aside class="special">
+In Java, instructiunea de asignare returneaza valoarea ce a fost asignata. De aceea ramura <b>if (a = true)</b> se va executa tot timpul.
+</aside>
+</google-codelab-step>
+
+<google-codelab-step label="Exercitii" duration="80">
+Cod de ajutor:
+<pre>
+//citirea unui numar de la tastatura
+Scanner in = new Scanner(System.in);
+int a = in.nextInt();
+
+//afisarea pe ecran
+System.out.println("linie noua");
+System.out.print("text pe aceeasi linie");
+</pre>
+<ol>
+<li>
+Sa se afiseze urmatorul pattern pe ecran, fara a folosi in mod repetat instructiunea System.out.println(): <br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+# # # # # # # #<br>
+</li>
+
+
+<li>
+
+Sa se afiseze urmatorul pattern pe ecran, fara a folosi in mod repetat instructiunea System.out.println(): <br>
+ # # # # # # #<br>
+ # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #<br>
+ # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #<br>
+ # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #<br>
+ # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #<br>
+ # &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; #<br>
+ # # # # # # #<br>
+</li>
+
+<li>
+Sa se realizeze un program care aduna toate numerele de la 0 la 100 mai putin acele numere care sunt multipli de 11.
+</li>
+
+<li>
+Sa se citeasca de la tastura un numar intreg pana cand se va introduce un numar intreg par, cuprins intre 0 si 10.<br>
+Hint: se va folosi instructiunea do-while
+</li>
+
+
+<li>
+Sa se realizeze un program care citeste 2 numere de la tastatura a si b si afiseaza toate numerele cuprinse in intervalul [a,b].
+</li>
+
+<li>
+Sa se realizeze un program care citeste un numar de la tastatura si afiseaza un mesaj daca numarul respectiv este sau nu numar prim.
+</li>
+
+<li>
+Sa se realizeze un program care calculeaza pentru un numar citit de la tastatura, factorialul numarului respectiv.
+</li>
+
+<li>
+Sa se realizeze un program care afiseaza tabla inmultirii pana la 10 sub forma:<br>
+ 1  2  3  4  5  6  7  8  9 <br>
+ 2  4  6  8 10 12 14 16 18 <br>
+ ...... <br>
+
+Dar daca se doreste afisarea numerelor pe aceleasi coloana? Spre exemplu
+&nbsp;1&nbsp;&nbsp;2&nbsp;&nbsp;3&nbsp;&nbsp;4&nbsp;&nbsp;5&nbsp;&nbsp;6&nbsp;&nbsp;7&nbsp;&nbsp;8&nbsp;&nbsp;9&nbsp;<br>
+&nbsp;2&nbsp;&nbsp;4&nbsp;&nbsp;6&nbsp;&nbsp;8&nbsp;&nbsp;10&nbsp;12&nbsp;14&nbsp;16&nbsp;18<br>
+</li>
+
+
+<li>
+Sa se afiseze numerele de la 0 la 30 tinand cont de urmatoarele reguli: daca numarul este multiplu de 3 atunci se va afisa "fizz" in locul numarului, daca numarul este multiplu de 5 atunci se va afisa "buzz" in locul numarului, iar daca numarul este multiplu si de 3 si de 5 atunci se afisa "fizz buzz". Pentru restul numerelor se va afisa valoarea lor.
+</li>
+
+<li>
+Sa se realizeze un program pentru a implementa jocul "Ghicirea numarului". Programul va detine intr-o variabila un numar cuprins intre 0 si 100. Utilizatorul este rugat sa introduca de la tastatura numere in mod repetitiv pana cand reuseste sa ghiceasca numarul.
+</li>
+
+</ol>
+</google-codelab-step>
+    
+  </google-codelab>
+
+
+</body>
+</html>
